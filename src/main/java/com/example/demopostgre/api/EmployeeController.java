@@ -1,7 +1,8 @@
 package com.example.demopostgre.api;
 
 import com.example.demopostgre.domain.Employee;
-import com.example.demopostgre.response.employeeResponseDto.EmployeeResponseDto;
+import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseDto;
+import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseShortDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,8 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
-        return null;
+    @GetMapping("/id")
+    public List<EmployeeResponseShortDto> getAllEmployeeWithId() {
+        return employeeService.getAllEmployeeWithId();
     }
 }

@@ -1,8 +1,9 @@
 package com.example.demopostgre.api;
 
+import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseShortDto;
 import com.example.demopostgre.repository.EmployeeRepository;
-import com.example.demopostgre.response.employeeResponseDto.EmployeeResponseDto;
-import com.example.demopostgre.response.mapper.SimpleSourceDestinationMapper;
+import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseDto;
+import com.example.demopostgre.model.mapper.SimpleSourceDestinationMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public class EmployeeService {
         return employeeRepository.findAll()
                 .stream()
                 .map(simpleSourceDestinationMapper::sourceToDestination)
+                .toList();
+    }
+
+    public List<EmployeeResponseShortDto> getAllEmployeeWithId() {
+        return employeeRepository.findAll()
+                .stream()
+                .map(simpleSourceDestinationMapper::sourceShortToDestination)
                 .toList();
     }
 }
