@@ -32,4 +32,8 @@ public class EmployeeService {
                 .map(simpleSourceDestinationMapper::sourceShortToDestination)
                 .toList();
     }
+
+    public void deleteEmployeeById(Long id) {
+        employeeRepository.deleteById(id);
+    }
 }

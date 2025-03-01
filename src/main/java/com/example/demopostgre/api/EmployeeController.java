@@ -3,10 +3,7 @@ package com.example.demopostgre.api;
 import com.example.demopostgre.domain.Employee;
 import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseDto;
 import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseShortDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,10 @@ public class EmployeeController {
     @GetMapping("/id")
     public List<EmployeeResponseShortDto> getAllEmployeeWithId() {
         return employeeService.getAllEmployeeWithId();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteByID( @PathVariable long id) {
+        employeeService.deleteEmployeeById(id);
     }
 }
