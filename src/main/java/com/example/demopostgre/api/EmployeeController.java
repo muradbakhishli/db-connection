@@ -22,9 +22,9 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/id")
-    public List<EmployeeResponseShortDto> getAllEmployeeWithId() {
-        return employeeService.getAllEmployeeWithId();
+    @GetMapping("/{id}")
+    public List<EmployeeResponseShortDto> getAllEmployeeWithId(@PathVariable long id) {
+        return employeeService.getAllEmployeeWithId(id);
     }
 
     @DeleteMapping("/{id}")

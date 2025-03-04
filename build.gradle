@@ -24,17 +24,24 @@ repositories {
 }
 
 dependencies {
+    //jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //web
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //lombok
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
+
+   //postgres
+    runtimeOnly 'org.postgresql:postgresql'
+
+    //mapper
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
-    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.3'
-
 }
 
 tasks.named('test') {
