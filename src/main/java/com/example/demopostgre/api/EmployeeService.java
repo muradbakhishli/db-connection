@@ -1,5 +1,7 @@
 package com.example.demopostgre.api;
 
+import com.example.demopostgre.domain.Employee;
+import com.example.demopostgre.model.employeeRequestdto.EmployeeRequestDto;
 import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseShortDto;
 import com.example.demopostgre.repository.EmployeeRepository;
 import com.example.demopostgre.model.employeeResponseDto.EmployeeResponseDto;
@@ -23,7 +25,7 @@ public class EmployeeService {
                 .toList();
     }
 
-    public List<EmployeeResponseShortDto> getAllEmployeeWithId(long id) {
+    public List<EmployeeResponseShortDto> getEmployeeWithId(long id) {
         return employeeRepository.findById(id)
                 .stream()
                 .map(employee -> modelMapper.map(employee, EmployeeResponseShortDto.class))
@@ -33,4 +35,20 @@ public class EmployeeService {
     public void deleteEmployeeById(Long id) {
         employeeRepository.deleteById(id);
     }
+
+    public void createNewEmployee(EmployeeRequestDto employeeRequestDto) {
+        employeeRepository.save(modelMapper.map(employeeRequestDto, Employee.class));
+    }
+
+    public void updateEmployee(Long id, EmployeeRequestDto employeeRequestDto) {
+        Employee employee = getEmployee(id);
+        modelMapper.map(employeeRequestDto, employee);
+        employeeRepository.save(employee);
+    }
+
+    private Employee getEmployee(Long id) {
+        return employeeRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
+
 }
