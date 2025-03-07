@@ -25,11 +25,9 @@ public class EmployeeService {
                 .toList();
     }
 
-    public List<EmployeeResponseShortDto> getEmployeeWithId(long id) {
-        return employeeRepository.findById(id)
-                .stream()
-                .map(employee -> modelMapper.map(employee, EmployeeResponseShortDto.class))
-                .toList();
+    public EmployeeResponseShortDto getEmployeeWithId(long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
+        return modelMapper.map(employee, EmployeeResponseShortDto.class);
     }
 
     public void deleteEmployeeById(Long id) {
@@ -47,7 +45,7 @@ public class EmployeeService {
     }
 
     private Employee getEmployee(Long id) {
-        return employeeRepository.findById(id).orElseThrow(RuntimeException::new);
+        return employeeRepository.findById(id).orElseThrow(()-> new RuntimeException("Employee not found"));
     }
 
 

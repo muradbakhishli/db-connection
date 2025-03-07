@@ -10,5 +10,5 @@ public class EmployeeResponseShortDto {
 
     private String name;
     private String surname;
-    private String salary;
+    private Double salary;
 }

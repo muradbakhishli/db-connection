@@ -21,7 +21,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public List<EmployeeResponseShortDto> getEmployeeWithId(@PathVariable long id) {
+    public EmployeeResponseShortDto getEmployeeWithId(@PathVariable long id) {
         return employeeService.getEmployeeWithId(id);
     }
 
