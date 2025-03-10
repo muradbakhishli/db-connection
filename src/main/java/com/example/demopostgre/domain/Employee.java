@@ -1,18 +1,19 @@
 package com.example.demopostgre.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Entity
-@Table(name = "Employees")
+import java.util.List;
+
 @Getter
 @Setter
+@Entity
+@Table(name = "Employees")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "epmloyee_id")
+    @Column(name = "employee_id")
     private Long id;
 
     @Column(name = "employee_name")
@@ -23,5 +24,8 @@ public class Employee {
 
     @Column(name = "employee_salary")
     private Double salary;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Address> address;
 
 }

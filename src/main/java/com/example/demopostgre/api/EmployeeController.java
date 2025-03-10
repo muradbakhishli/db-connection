@@ -21,7 +21,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public EmployeeResponseShortDto getEmployeeWithId(@PathVariable long id) {
+    public EmployeeResponseShortDto getEmployeeWithId(@PathVariable Long id) {
         return employeeService.getEmployeeWithId(id);
     }
 
@@ -31,8 +31,14 @@ public class EmployeeController {
         employeeService.createNewEmployee(employeeRequestDto);
     }
 
+
+    @PostMapping("/add-address")
+    public void addAddress(@RequestParam Long employeeId, @RequestParam String address){
+        employeeService.addAddress(employeeId, address);
+    }
+
     @DeleteMapping("/{id}")
-    public void deleteByID(@PathVariable long id) {
+    public void deleteByID(@PathVariable Long id) {
         employeeService.deleteEmployeeById(id);
     }
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class EmployeeRequestDto {
 
+
     private String name;
     private String surname;
     private double salary;
